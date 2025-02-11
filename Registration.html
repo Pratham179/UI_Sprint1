@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form onsubmit="registerUser(event)">
+            <input type="text" id="username" placeholder="Enter Username" required>
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    
+    <script>
+        function registerUser(event) {
+            event.preventDefault();
+            let username = document.getElementById('username').value;
+            let email = document.getElementById('email').value;
+            let userId = 'USER' + Math.floor(Math.random() * 10000);
+            alert(`Registration Successful!\nUser ID: ${userId}\nUsername: ${username}\nEmail: ${email}`);
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

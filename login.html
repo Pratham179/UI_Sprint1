@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form onsubmit="loginUser(event)">
+            <input type="text" id="login-username" placeholder="Enter Username" required>
+            <input type="email" id="login-email" placeholder="Enter Email" required>
+            <input type="password" id="login-password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <script>
+        function loginUser(event) {
+            event.preventDefault();
+            let username = document.getElementById('login-username').value;
+            let email = document.getElementById('login-email').value;
+            alert(`Login Successful!\nUsername: ${username}\nEmail: ${email}`);
+            window.location.href = 'home.html';
+        }
+    </script>
+</body>
+</html>
