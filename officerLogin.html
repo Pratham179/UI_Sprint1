@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Officer Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
-        <form onsubmit="return loginUser(event)">
-            <input type="text" id="username" placeholder="Enter User ID" minlength="5" maxlength="20" required>
-            <input type="password" id="password" placeholder="Enter Password" required>
+        <h2>Officer Login</h2>
+        <form onsubmit="return loginOfficer(event)">
+            <input type="text" id="officer-username" placeholder="Enter User ID" minlength="5" maxlength="20" required>
+            <input type="password" id="officer-password" placeholder="Enter Password" required>
             <p id="error-message" class="error"></p>
             <button type="submit">Login</button>
         </form>
     </div>
     
     <script>
-        function loginUser(event) {
+        function loginOfficer(event) {
             event.preventDefault();
-            let username = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
+            let username = document.getElementById('officer-username').value;
+            let password = document.getElementById('officer-password').value;
             let errorMessage = document.getElementById('error-message');
             
             let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,30}$/;
@@ -32,7 +32,7 @@
             }
             
             alert(`Login Successful!\nUsername: ${username}`);
-            window.location.href = 'customerHome.html';
+            window.location.href = 'officerDashboard.html';
             return true;
         }
     </script>

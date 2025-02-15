@@ -3,29 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
+    <title>Customer Registration</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
     <div class="container">
-        <h2>Register</h2>
-        <form onsubmit="registerUser(event)">
-            <input type="text" id="username" placeholder="Enter Username" required>
+        <h2>Customer Registration</h2>
+        <form onsubmit="return registerCustomer(event)">
+            <h3>Personal Information</h3>
+            <input type="text" id="customer-name" placeholder="Enter Customer Name" maxlength="50" required>
             <input type="email" id="email" placeholder="Enter Email" required>
-            <input type="password" id="password" placeholder="Enter Password" required>
+            
+            <label for="country-code">Country Code:</label>
+            <select id="country-code" required>
+                <option value="+1">+1 (USA)</option>
+                <option value="+91">+91 (India)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+61">+61 (Australia)</option>
+            </select>
+            <input type="text" id="mobile-number" placeholder="Enter 10-digit Mobile Number" pattern="\d{10}" required>
+            
+            <textarea id="address" placeholder="Enter Complete Mailing Address" required></textarea>
+            
+            <h3>Username and Password</h3>
+            <input type="text" id="user-id" placeholder="Enter User ID" minlength="5" maxlength="20" required>
+            <input type="password" id="password" placeholder="Enter Password" maxlength="30" required>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" maxlength="30" required>
+            
+            <h3>Preferences</h3>
+            <textarea id="preferences" placeholder="Enter any preferences (optional)"></textarea>
+            
             <button type="submit">Register</button>
+            <button type="reset">Reset</button>
         </form>
     </div>
     
     <script>
-        function registerUser(event) {
+        function registerCustomer(event) {
             event.preventDefault();
-            let username = document.getElementById('username').value;
+            let name = document.getElementById('customer-name').value;
             let email = document.getElementById('email').value;
-            let userId = 'USER' + Math.floor(Math.random() * 10000);
-            alert(`Registration Successful!\nUser ID: ${userId}\nUsername: ${username}\nEmail: ${email}`);
-            window.location.href = 'login.html';
+            let userId = "CUST" + Math.floor(1000 + Math.random() * 9000);
+            
+            let confirmationMessage = `<div class='success'>Consumer Registration successful.</div>
+                                       <p><strong>Customer Username:</strong> ${userId}</p>
+                                       <p><strong>Customer Name:</strong> ${name}</p>
+                                       <p><strong>Email:</strong> ${email}</p>`;
+            
+            document.body.innerHTML = confirmationMessage;
+            
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 3000);
         }
     </script>
 </body>

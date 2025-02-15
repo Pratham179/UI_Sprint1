@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function printInvoice() {
+            window.print();
+        }
+
+        // Function to load invoice details from local storage (assuming previous page stored data)
+        function loadInvoiceDetails() {
+            let invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
+            if (!invoiceData) {
+                alert("No invoice data found!");
+                window.location.href = "home.html"; // Redirect if no data
+                return;
+            }
+
+            // Populate invoice details
+            document.getElementById("receiver-name").textContent = invoiceData.receiverName;
+            document.getElementById("receiver-address").textContent = invoiceData.receiverAddress;
+            document.getElementById("receiver-pin").textContent = invoiceData.receiverPin;
+            document.getElementById("receiver-mobile").textContent = invoiceData.receiverMobile;
+            document.getElementById("parcel-weight").textContent = invoiceData.parcelWeight + " g";
+            document.getElementById("parcel-description").textContent = invoiceData.parcelDescription;
+            document.getElementById("parcel-delivery-type").textContent = invoiceData.deliveryType;
+            document.getElementById("parcel-packing").textContent = invoiceData.packingPreference;
+            document.getElementById("parcel-pickup-time").textContent = invoiceData.pickupTime;
+            document.getElementById("parcel-dropoff-time").textContent = invoiceData.dropoffTime;
+            document.getElementById("parcel-cost").textContent = "$" + invoiceData.serviceCost;
+            document.getElementById("parcel-payment-time").textContent = invoiceData.paymentTime;
+        }
+
+        window.onload = loadInvoiceDetails;
+    </script>
+</head>
+<body>
+    <header>
+        <h2>Invoice</h2>
+    </header>
+    
+    <main>
+        <div class="invoice-container">
+            <h3>Parcel Invoice</h3>
+            <table>
+                <tr><td><strong>Receiver Name:</strong></td><td id="receiver-name"></td></tr>
+                <tr><td><strong>Receiver Address:</strong></td><td id="receiver-address"></td></tr>
+                <tr><td><strong>Receiver Pin:</strong></td><td id="receiver-pin"></td></tr>
+                <tr><td><strong>Receiver Mobile:</strong></td><td id="receiver-mobile"></td></tr>
+                <tr><td><strong>Parcel Weight:</strong></td><td id="parcel-weight"></td></tr>
+                <tr><td><strong>Parcel Contents:</strong></td><td id="parcel-description"></td></tr>
+                <tr><td><strong>Delivery Type:</strong></td><td id="parcel-delivery-type"></td></tr>
+                <tr><td><strong>Packing Preference:</strong></td><td id="parcel-packing"></td></tr>
+                <tr><td><strong>Pickup Time:</strong></td><td id="parcel-pickup-time"></td></tr>
+                <tr><td><strong>Dropoff Time:</strong></td><td id="parcel-dropoff-time"></td></tr>
+                <tr><td><strong>Service Cost:</strong></td><td id="parcel-cost"></td></tr>
+                <tr><td><strong>Payment Time:</strong></td><td id="parcel-payment-time"></td></tr>
+            </table>
+            
+            <button onclick="printInvoice()">Print Invoice</button>
+            <button onclick="window.location.href='customerHome.html'">Back to Home</button>
+        </div>
+    </main>
+</body>
+</html>

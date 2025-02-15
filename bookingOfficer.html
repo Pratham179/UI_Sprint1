@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Booking Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="officer_home.html">Home</a></li>
+                <li><a href="officer_booking.html">Booking Service</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="delivery_status.html">Delivery Status</a></li>
+                <li><a href="pickup_scheduling.html">Pickup Scheduling</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Officer Booking Service</h2>
+        <form id="officer-booking-form" onsubmit="return validateOfficerBooking(event)">
+            <h3>Sender Information</h3>
+            <input type="text" id="sender-name" placeholder="Sender Name" required>
+            <input type="text" id="sender-address" placeholder="Sender Address" required>
+            <input type="text" id="sender-contact" placeholder="Sender Contact Number" pattern="\d{10}" required>
+            
+            <h3>Receiver Information</h3>
+            <input type="text" id="receiver-name" placeholder="Receiver Name" required>
+            <input type="text" id="receiver-address" placeholder="Receiver Address" required>
+            <input type="text" id="receiver-pin" placeholder="Pin Code" required pattern="\d{6}">
+            <input type="text" id="receiver-contact" placeholder="Contact Number" required pattern="\d{10}">
+            
+            <h3>Parcel Details</h3>
+            <input type="text" id="parcel-size" placeholder="Size & Weight" required>
+            <input type="text" id="parcel-description" placeholder="Contents Description" required>
+            
+            <h3>Shipping Options</h3>
+            <select id="delivery-speed" required>
+                <option value="standard">Standard</option>
+                <option value="express">Express</option>
+            </select>
+            <select id="packaging" required>
+                <option value="standard">Standard Packaging</option>
+                <option value="custom">Custom Packaging</option>
+                <option value="eco">Eco-friendly Packaging</option>
+                <option value="fragile">Fragile Item Handling</option>
+            </select>
+            
+            <h3>Date and Time Selection</h3>
+            <input type="datetime-local" id="pickup-time" required>
+            
+            <h3>Additional Services</h3>
+            <input type="checkbox" id="insurance"> Insurance
+            <input type="checkbox" id="tracking"> Tracking
+            
+            <button type="submit">Book Service</button>
+        </form>
+    </main>
+    
+    <script>
+        function validateOfficerBooking(event) {
+            event.preventDefault();
+            alert("Booking Successful!");
+            window.location.href = 'officerHome.html';
+        }
+
+        function logout() {
+            alert("Logging out...");
+            window.location.href = "officeLogin.html";
+        }
+    </script>
+</body>
+</html>

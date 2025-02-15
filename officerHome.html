@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="officer_home.html">Home</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="delivery_status.html">Delivery Status</a></li>
+                <li><a href="pickup_scheduling.html">Pickup Scheduling</a></li>
+                <li><a href="previous_booking.html">Previous Booking</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="welcome-message">
+            <h2>Welcome, <span id="username"></span>!</h2>
+        </div>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let username = localStorage.getItem("username") || "Officer";
+            document.getElementById("username").textContent = username;
+        });
+        
+        function logout() {
+            localStorage.clear();
+            window.location.href = "officerLogin.html";
+        }
+    </script>
+</body>
+</html>
