@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-right">
+            <span>Welcome, <span id="username">Customer</span></span>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </header>
+    
+    <main>
+        <h2>Customer Support</h2>
+        <p>If you have any queries or complaints, feel free to reach out to us.</p>
+        
+        <h3>Contact Details</h3>
+        <p><strong>Contact Number:</strong> +1-234-567-890</p>
+        <p><strong>Email:</strong> support@example.com</p>
+        <p><strong>Address:</strong> 123 Support Street, City, ZIP</p>
+    </main>
+
+    <script>
+        function logout() {
+            alert("Logging out...");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

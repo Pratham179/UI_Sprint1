@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Update</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h2>Delivery Update</h2>
+        <h3>Search Booking for Delivery Update</h3>
+        <form id="delivery-search-form" onsubmit="searchDelivery(event)">
+            <input type="text" id="delivery-booking-id" placeholder="Enter Booking ID (12 digits)" required pattern="\d{12}">
+            <button type="submit">Search</button>
+        </form>
+        <p id="delivery-search-result"></p>
+        
+        <h3>Update Delivery Status</h3>
+        <form id="delivery-update-form" onsubmit="updateDeliveryStatus(event)">
+            <input type="text" id="update-booking-id" placeholder="Booking ID" readonly>
+            <select id="delivery-status" required>
+                <option value="picked_up">Picked Up</option>
+                <option value="in_transit">In Transit</option>
+                <option value="delivered">Delivered</option>
+                <option value="returned">Returned</option>
+            </select>
+            <button type="submit">Update Status</button>
+        </form>
+        <p id="delivery-update-result"></p>
+    </main>
+
+    <script>
+        function searchDelivery(event) {
+            event.preventDefault();
+            let bookingId = document.getElementById("delivery-booking-id").value;
+            if (bookingId.length === 12) {
+                document.getElementById("delivery-search-result").innerText = "Booking found: " + bookingId;
+                document.getElementById("update-booking-id").value = bookingId;
+            } else {
+                document.getElementById("delivery-search-result").innerText = "Invalid Booking ID. Please enter a 12-digit number.";
+            }
+        }
+
+        function updateDeliveryStatus(event) {
+            event.preventDefault();
+            let bookingId = document.getElementById("update-booking-id").value;
+            let status = document.getElementById("delivery-status").value;
+            if (bookingId && status) {
+                document.getElementById("delivery-update-result").innerText = "Delivery status for Booking ID: " + bookingId + " updated to " + status;
+            } else {
+                document.getElementById("delivery-update-result").innerText = "Please enter valid details.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Status</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h2>Tracking Status – Officer (UI)</h2>
+        <ul id="package-list">
+            <!-- List of shipped packages will be dynamically added here -->
+        </ul>
+        
+        <h3>Search Package</h3>
+        <form id="tracking-form" onsubmit="searchPackage(event)">
+            <input type="text" id="customer-id" placeholder="Enter Customer ID" required>
+            <input type="text" id="booking-id" placeholder="Enter Booking ID (12 digits)" required pattern="\d{12}">
+            <button type="submit">Search</button>
+        </form>
+        <p id="tracking-result"></p>
+    </main>
+
+    <script>
+        function searchPackage(event) {
+            event.preventDefault();
+            let customerId = document.getElementById("customer-id").value;
+            let bookingId = document.getElementById("booking-id").value;
+            if (bookingId.length === 12) {
+                document.getElementById("tracking-result").innerText = "Tracking details for Customer ID: " + customerId + ", Booking ID: " + bookingId;
+            } else {
+                document.getElementById("tracking-result").innerText = "Invalid Booking ID. Please enter a 12-digit number.";
+            }
+        }
+    </script>
+</body>
+</html>

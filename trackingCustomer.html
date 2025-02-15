@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Status</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h2>Tracking Status – Customer (UI)</h2>
+        <form id="tracking-form" onsubmit="trackPackage(event)">
+            <input type="text" id="booking-id" placeholder="Enter Booking ID (12 digits)" required pattern="\d{12}">
+            <button type="submit">Search</button>
+        </form>
+        <p id="tracking-result"></p>
+    </main>
+
+    <script>
+        function trackPackage(event) {
+            event.preventDefault();
+            let bookingId = document.getElementById("booking-id").value;
+            if (bookingId.length === 12) {
+                document.getElementById("tracking-result").innerText = "Tracking details for Booking ID: " + bookingId;
+            } else {
+                document.getElementById("tracking-result").innerText = "Invalid Booking ID. Please enter a 12-digit number.";
+            }
+        }
+    </script>
+</body>
+</html>

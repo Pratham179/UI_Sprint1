@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-right">
+            <span>Welcome, <span id="username">Customer</span></span>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </header>
+    
+    <main>
+        <h2>Booking History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Booking ID</th>
+                    <th>Booking Date</th>
+                    <th>Receiver Name</th>
+                    <th>Delivered Address</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="booking-history">
+                <!-- Booking history data will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button id="prev-btn" onclick="prevPage()">Previous</button>
+            <button id="next-btn" onclick="nextPage()">Next</button>
+        </div>
+    </main>
+
+    <script>
+        function logout() {
+            alert("Logging out...");
+            window.location.href = "login.html";
+        }
+
+        let currentPage = 1;
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadBookingHistory();
+            }
+        }
+
+        function nextPage() {
+            currentPage++;
+            loadBookingHistory();
+        }
+
+        function loadBookingHistory() {
+            document.getElementById("booking-history").innerHTML = "<tr><td colspan='7'>Loading...</td></tr>";
+            // Fetch booking history dynamically (placeholder for backend integration)
+            setTimeout(() => {
+                document.getElementById("booking-history").innerHTML = "<tr><td>12345</td><td>987654321012</td><td>2024-02-15</td><td>John Doe</td><td>456 Destination Ave, City, ZIP</td><td>$50</td><td>Delivered</td></tr>";
+            }, 500);
+        }
+        
+        loadBookingHistory();
+    </script>
+</body>
+</html>

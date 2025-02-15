@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Scheduling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h2>Pickup Scheduling - Officer (UI)</h2>
+        
+        <h3>Search Booking</h3>
+        <form id="search-form" onsubmit="searchBooking(event)">
+            <input type="text" id="booking-id" placeholder="Enter Booking ID (12 digits)" required pattern="\d{12}">
+            <button type="submit">Search</button>
+        </form>
+        <p id="search-result"></p>
+        
+        <h3>Schedule Pickup</h3>
+        <form id="schedule-form" onsubmit="schedulePickup(event)">
+            <input type="text" id="schedule-booking-id" placeholder="Booking ID" readonly>
+            <input type="datetime-local" id="pickup-time" required>
+            <button type="submit">Save</button>
+        </form>
+        <p id="schedule-result"></p>
+    </main>
+
+    <script>
+        function searchBooking(event) {
+            event.preventDefault();
+            let bookingId = document.getElementById("booking-id").value;
+            if (bookingId.length === 12) {
+                document.getElementById("search-result").innerText = "Booking found: " + bookingId;
+                document.getElementById("schedule-booking-id").value = bookingId;
+            } else {
+                document.getElementById("search-result").innerText = "Invalid Booking ID. Please enter a 12-digit number.";
+            }
+        }
+
+        function schedulePickup(event) {
+            event.preventDefault();
+            let bookingId = document.getElementById("schedule-booking-id").value;
+            let pickupTime = document.getElementById("pickup-time").value;
+            if (bookingId && pickupTime) {
+                document.getElementById("schedule-result").innerText = "Pickup scheduled for Booking ID: " + bookingId + " at " + pickupTime;
+            } else {
+                document.getElementById("schedule-result").innerText = "Please enter valid details.";
+            }
+        }
+    </script>
+</body>
+</html>
