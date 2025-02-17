@@ -22,16 +22,13 @@
                 <option value="+61">+61 (Australia)</option>
             </select>
             <input type="text" id="mobile-number" placeholder="Enter 10-digit Mobile Number" pattern="\d{10}" required>
-            
-            <textarea id="address" placeholder="Enter Complete Mailing Address" required></textarea>
-            
+           
             <h3>Username and Password</h3>
             <input type="text" id="user-id" placeholder="Enter User ID" minlength="5" maxlength="20" required>
             <input type="password" id="password" placeholder="Enter Password" maxlength="30" required>
             <input type="password" id="confirm-password" placeholder="Confirm Password" maxlength="30" required>
+            <p id="error-message" class="error"></p>
             
-            <h3>Preferences</h3>
-            <textarea id="preferences" placeholder="Enter any preferences (optional)"></textarea>
             
             <button type="submit">Register</button>
             <button type="reset">Reset</button>
@@ -43,18 +40,26 @@
             event.preventDefault();
             let name = document.getElementById('customer-name').value;
             let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirm-password').value;
+            let errorMessage = document.getElementById('error-message');
+
+            let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,30}$/;
+
+            if (!passwordRegex.test(password)) {
+                errorMessage.textContent = "Password must have at least one uppercase letter, one lowercase letter, one special character, and be 8-30 characters long.";
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match. Please enter the same password.";
+                return false;
+            }
+
             let userId = "CUST" + Math.floor(1000 + Math.random() * 9000);
-            
-            let confirmationMessage = `<div class='success'>Consumer Registration successful.</div>
-                                       <p><strong>Customer Username:</strong> ${userId}</p>
-                                       <p><strong>Customer Name:</strong> ${name}</p>
-                                       <p><strong>Email:</strong> ${email}</p>`;
-            
-            document.body.innerHTML = confirmationMessage;
-            
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 3000);
+
+            alert(`Consumer Registration successful!\n\nCustomer Username: ${userId}\nCustomer Name: ${name}\nEmail: ${email}`);
+            window.location.href = 'login.html';
         }
     </script>
 </body>

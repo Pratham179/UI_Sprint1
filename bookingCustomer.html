@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Service</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="booking.html">Booking Service</a></li>
-                <li><a href="tracking.html">Tracking</a></li>
-                <li><a href="previous_booking.html">Previous Booking</a></li>
+                <li><a href="customerHome.html">Home</a></li>
+                <li><a href="bookingCustomer.html">Booking Service</a></li>
+                <li><a href="trackingCustomer.html">Tracking</a></li>
+                <li><a href="historyCustomer.html">Previous Booking</a></li>
+                <li><a href="contact.html">Contact Support</a></li>
                 <li><a href="#" onclick="logout()">Logout</a></li>
             </ul>
         </nav>
@@ -24,9 +23,9 @@
         <h2>Booking Service</h2>
         <form id="booking-form" onsubmit="proceedToPayment(event)">
             <h3>Sender Information</h3>
-            <input type="text" id="sender-name" readonly value="John Doe">
-            <input type="text" id="sender-address" readonly value="123 Main St, City, ZIP">
-            <input type="text" id="sender-contact" readonly value="9876543210">
+            <input type="text" id="sender-name" placeholder="Enter Your Name" required>
+            <input type="text" id="sender-address" placeholder="Enter Your Address" required>
+            <input type="text" id="sender-contact" placeholder="Enter Your Contact Number" required pattern="\d{10}">
 
             <h3>Receiver Information</h3>
             <input type="text" id="receiver-name" placeholder="Receiver Name" required>
@@ -53,9 +52,6 @@
             <h3>Date and Time Selection</h3>
             <input type="datetime-local" id="pickup-time" required>
 
-            <h3>Service Cost and Payment</h3>
-            <input type="text" id="service-cost" readonly>
-
             <h3>Additional Services</h3>
             <input type="checkbox" id="insurance"> Insurance
             <input type="checkbox" id="tracking"> Tracking
@@ -69,7 +65,6 @@
             event.preventDefault();
 
             let cost = calculateCost();
-            localStorage.setItem("serviceCost", cost);
             alert("Proceeding to Payment. Amount: $" + cost);
 
             // Redirect to payment page
@@ -89,7 +84,6 @@
             if (document.getElementById("insurance").checked) baseCost += 10;
             if (document.getElementById("tracking").checked) baseCost += 5;
 
-            document.getElementById("service-cost").value = "$" + baseCost;
             return baseCost;
         }
 
@@ -97,6 +91,14 @@
             alert("Logging out...");
             window.location.href = "login.html";
         }
+
+        // Disable past dates in datetime-local input
+        document.addEventListener("DOMContentLoaded", function() {
+            let pickupTimeInput = document.getElementById("pickup-time");
+            let now = new Date();
+            let currentDateTime = now.toISOString().slice(0, 16);
+            pickupTimeInput.min = currentDateTime;
+        });
     </script>
 </body>
 </html>

@@ -10,12 +10,18 @@
 
 <body>
     <header>
-        <div class="header-right">
-            <span>Welcome, <span id="username">Officer</span></span>
-            <button onclick="logout()">Logout</button>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="officerHome.html">Home</a></li>
+                <li><a href="bookingOfficer.html">Booking Service</a></li>
+                <li><a href="trackingOfficer.html">Tracking</a></li>
+                <li><a href="historyOfficer.html">Previous Booking</a></li>
+                <li><a href="contact.html">Contact Support</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
     </header>
-    
+
     <main>
         <h2>Booking History</h2>
         <h3>Search Booking</h3>
@@ -26,7 +32,7 @@
             <button type="submit">Search</button>
         </form>
         <p id="search-result"></p>
-        
+
         <table>
             <thead>
                 <tr>
@@ -73,7 +79,7 @@
             let customerId = document.getElementById("customer-id").value;
             let startDate = document.getElementById("start-date").value;
             let endDate = document.getElementById("end-date").value;
-            
+
             if (customerId && startDate && endDate) {
                 document.getElementById("search-result").innerText = "Searching for bookings...";
                 loadBookingHistory(customerId, startDate, endDate);
@@ -91,4 +97,5 @@
         }
     </script>
 </body>
+
 </html>

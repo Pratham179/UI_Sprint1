@@ -9,12 +9,24 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="officerHome.html">Home</a></li>
+                <li><a href="trackingOfficer.html">Tracking</a></li>
+                <li><a href="delivery.html">Delivery Status</a></li>
+                <li><a href="pickup.html">Pickup Scheduling</a></li>
+                <li><a href="historyOfficer.html">Previous Booking</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <h2>Tracking Status – Officer (UI)</h2>
         <ul id="package-list">
             <!-- List of shipped packages will be dynamically added here -->
         </ul>
-        
+
         <h3>Search Package</h3>
         <form id="tracking-form" onsubmit="searchPackage(event)">
             <input type="text" id="customer-id" placeholder="Enter Customer ID" required>
@@ -37,4 +49,5 @@
         }
     </script>
 </body>
+
 </html>
